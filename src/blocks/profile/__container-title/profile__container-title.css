@@ -1,0 +1,19 @@
+.profile__container-title {
+    font-weight: 500;
+    font-size: 42px;
+    margin-bottom: 16px;
+    margin-right: 25px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top: 0;
+}
+@media screen and (max-width: 320px) {
+    .profile__container-title {
+        font-weight: 500;
+        font-size: 27px;
+        text-align: center;
+        margin-right: 10px;
+        margin-bottom: 14px;
+    }
+}
