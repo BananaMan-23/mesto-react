@@ -1,15 +1,18 @@
 import React from "react";
 
 function Card(props) {
+    function handleCardClick() {
+        props.onCardClick(props.card)
+      }
     return (
-        <div class="element">
-            <button class="element__trash" type="button"></button>
-            <img class="element__image" src={props.link} alt={props.name} />
-            <div class="element__group">
-                <h2 class="element__group-subtitle">{props.name}</h2>
-                <div class="elements__like-wrapper">
-                    <button class="element__group-like" type="button"></button>
-                    <span class="elements__like-count">{props.likes.length}</span>
+        <div className="element">
+            <button className="element__trash" type="button"></button>
+            <img className="element__image" src={props.card.link} alt={props.card.name} onClick={handleCardClick} />
+            <div className="element__group">
+                <h2 className="element__group-subtitle">{props.card.name}</h2>
+                <div className="elements__like-wrapper">
+                    <button className="element__group-like" type="button"></button>
+                    <span className="elements__like-count">{props.card.likes.length}</span>
                 </div>
             </div>
         </div>
