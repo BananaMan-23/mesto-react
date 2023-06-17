@@ -9,8 +9,7 @@ function ImagePopup(props) {
               className="popup__image"
               alt={props.card ? props.card.name : ''}
             />
-            <figcaption
-              className="popup__caption">
+            <figcaption className="popup__caption">
                 {props.card ? props.card.name : ''}
             </figcaption>
           </figure>

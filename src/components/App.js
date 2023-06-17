@@ -9,7 +9,7 @@ function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false)
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false)
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false)
-  const [selectedCard, setSelectedCard] = React.useState()
+  const [selectedCard, setSelectedCard] = React.useState(null)
 
 
   function onCardClick(card) {
@@ -32,7 +32,7 @@ function App() {
     setEditAvatarPopupOpen(false)
     setEditProfilePopupOpen(false)
     setAddPlacePopupOpen(false)
-    setSelectedCard()
+    setSelectedCard(null)
   }
   return (
     <>
@@ -70,19 +70,6 @@ function App() {
 
     <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
 
-    <template className="template-cards">
-        <div className="element">
-            <button className="element__trash" type="button"></button>
-            <img className="element__image" src="#" alt="картинка" />
-            <div className="element__group">
-                <h2 className="element__group-subtitle"></h2>
-                <div className="elements__like-wrapper">
-                    <button className="element__group-like" type="button"></button>
-                    <span className="elements__like-count"></span>
-                </div>
-            </div>
-        </div>
-    </template>
     </>
     
   );
