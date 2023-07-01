@@ -1,54 +1,34 @@
 import {api} from "../utils/Api.js"
 import React from "react";
 import Card from "./Card.js";
+import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 
-
-function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick}) {
-    const [userName, setUserName] = React.useState('')
-    const [userDescription, setUserDescription] = React.useState('')
-    const [userAvatar, setUserAvatar] = React.useState('')
-    const [cards, setCards] = React.useState([])
-    
-    React.useEffect(() => {
-        api.getUserInfo().then((data) => {
-          setUserName(data.name)
-          setUserDescription(data.about)
-          setUserAvatar(data.avatar)
-        })
-        .catch((err) => console.log(err))
-    }, [])
-
-    React.useEffect(() => {
-        api.getUserCard().then((data) => {
-          setCards(data.map((item) => ({
-            id: item._id,
-            link: item.link,
-            name: item.name,
-            likes: item.likes
-          })))
-        })
-        .catch((err) => console.log(err))
-    }, [])
+function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick, handleCardLike, handleCardDelete, cards}) {
+    const currentUser = React.useContext(CurrentUserContext)
 
     return (
     <main className="main">
         <section className="profile">
             <div className="profile__avatar-wrapper">
-                <img src={userAvatar} alt="Изображение профиля" className="profile__avatar"/>
+                <img src={currentUser.avatar} alt="Изображение профиля" className="profile__avatar"/>
                 <button type="button" className="profile__avatar-edit-button" onClick={onEditAvatar}></button>
             </div>
             <div className="profile__container">
                 <div className="profile__container-info">
-                    <h1 className="profile__container-title">{userName}</h1>
+                    <h1 className="profile__container-title">{currentUser.name}</h1>
                     <button className="profile__container-edit" type="button" onClick={onEditProfile}></button>
                 </div>
-                <p className="profile__container-subtitle">{userDescription}</p> 
+                <p className="profile__container-subtitle">{currentUser.about}</p> 
             </div>
             <button className="profile__container-add" type="button" onClick={onAddPlace}></button>
         </section>
         <section className="elements">
         {
-            cards.map((card) => <Card key={card.id} card={card} onCardClick={onCardClick} />)
+            cards.map((card) => <Card key={card._id} 
+            card={card} 
+            onCardClick={onCardClick} 
+            onCardLike={handleCardLike} 
+            onCardDelete={handleCardDelete} />)
         }
         </section>
     </main>

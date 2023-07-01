@@ -33,7 +33,7 @@ class Api {
             headers: this._headers,
             body: JSON.stringify({
                 name: data.name,
-                about: data.info
+                about: data.about
             })
         })
         .then((res) => this._getResponseData(res))
@@ -43,7 +43,7 @@ class Api {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                avatar: data.link
+                avatar: data.avatar
             })
         })
         .then((res) => this._getResponseData(res))
@@ -59,24 +59,32 @@ class Api {
         })
         .then((res) => this._getResponseData(res))
     }
-    activeLike(cardId) {
-        return fetch(`${this._url}/cards/${cardId}/likes`, {
-            method: 'PUT',
-            headers: {
-                authorization: this._authorization
-            }
+
+    changeLikeCardStatus(id, isLiked) {
+        return fetch(this._url + `/cards/likes/${id}`, {
+          method: `${isLiked ? 'PUT' : 'DELETE'}`,
+          headers: this._headers
         })
-        .then((res) => this._getResponseData(res))
+        .then(this._getResponseData)
     }
-    inActiveLike(cardId) {
-        return fetch(`${this._url}/cards/${cardId}/likes`, {
-            method: 'DELETE',
-            headers: {
-                authorization: this._authorization
-            }
-        })
-        .then((res) => this._getResponseData(res))
-    }
+    // activeLike(cardId) {
+    //     return fetch(`${this._url}/cards/${cardId}/likes`, {
+    //         method: 'PUT',
+    //         headers: {
+    //             authorization: this._authorization
+    //         }
+    //     })
+    //     .then((res) => this._getResponseData(res))
+    // }
+    // inActiveLike(cardId) {
+    //     return fetch(`${this._url}/cards/${cardId}/likes`, {
+    //         method: 'DELETE',
+    //         headers: {
+    //             authorization: this._authorization
+    //         }
+    //     })
+    //     .then((res) => this._getResponseData(res))
+    // }
     deleteCard(cardId) {
         return fetch(`${this._url}/cards/${cardId}`, {
             method: 'DELETE',

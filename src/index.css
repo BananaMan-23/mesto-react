@@ -42,3 +42,4 @@
 @import url(./blocks/profile/__avatar/profile__avatar.css);
 @import url(./blocks/element/__like-wrapper/elements__like-wrapper.css);
 @import url(./blocks/element/__like-count/elements__like-count.css);
+@import url(./blocks/element/__trash/_hidden/element__trash_hidden.css);
