@@ -107,13 +107,13 @@ function App() {
     <Header />
 
     <Main 
-    onEditAvatar={handleEditAvatarClick}
-    onEditProfile={handleEditProfileClick}
-    onAddPlace={handleAddPlaceClick}
-    onCardClick={onCardClick}
-    handleCardLike={handleCardLike}
-    handleCardDelete={handleCardDelete}
-    cards={cards}
+      onEditAvatar={handleEditAvatarClick}
+      onEditProfile={handleEditProfileClick}
+      onAddPlace={handleAddPlaceClick}
+      onCardClick={onCardClick}
+      handleCardLike={handleCardLike}
+      handleCardDelete={handleCardDelete}
+      cards={cards}
     />
 
     <Footer />
