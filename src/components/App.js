@@ -64,6 +64,7 @@ function App() {
         setCurrentUser(data)
         closeAllPopups()
       })
+      .catch((err) => console.log(err))
   }
 
   function handleCardLike(card) {
@@ -78,7 +79,8 @@ function App() {
   function handleCardDelete(card) {
     api.deleteCard(card._id)
       .then(() => {
-        setCards(cards.filter((item) => item !== card))
+        // setCards(cards.filter((item) => item !== card))
+        setCards((prevState) => prevState.filter((item) => item !== card))
       })
       .catch((err) => console.log(err))
   }
@@ -133,7 +135,7 @@ function App() {
       onAddPlace={handleAddPlaceSubmit}
     />
 
-    <PopupWithForm name='config-delete' title='Вы уверены?'/>
+    <PopupWithForm name='config-delete' title='Вы уверены?' buttonText='Да'/>
 
     <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
 
