@@ -1,9 +1,8 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
-import Form from "./Form";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function EditProfilePopup({ isOpen, onUpdateUser, onClose }) {
+function EditProfilePopup(props) {
   const [name, setName] = React.useState("");
   const [description, setDescription] = React.useState("");
   const currentUser = React.useContext(CurrentUserContext);
@@ -11,7 +10,7 @@ function EditProfilePopup({ isOpen, onUpdateUser, onClose }) {
   React.useEffect(() => {
     setName(currentUser.name);
     setDescription(currentUser.about);
-  }, [currentUser, isOpen]);
+  }, [currentUser, props.isOpen]);
 
   function handleNameChange(evt) {
     setName(evt.target.value);
@@ -23,19 +22,18 @@ function EditProfilePopup({ isOpen, onUpdateUser, onClose }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    onUpdateUser({
+    props.onUpdateUser({
       name: name,
       about: description,
     });
   }
 
   return (
-    <Form
-      formName="open-edit"
+    <PopupWithForm
+      name="open-edit"
       title="Редактировать профиль"
-      isOpen={isOpen}
-      isModal={true}
-      // onClose={props.onClose}
+      isOpen={props.isOpen}
+      onClose={props.onClose}
       onSubmit={handleSubmit}
       buttonText="Сохранить"
     >
@@ -65,12 +63,7 @@ function EditProfilePopup({ isOpen, onUpdateUser, onClose }) {
         onChange={handleDescriptionChange}
       />
       <span id="info-input-error" className="popup__input-error"></span>
-      <button
-        type="button"
-        className="popup__close-button"
-        onClick={onClose}
-      ></button>
-    </Form>
+    </PopupWithForm>
   );
 }
 

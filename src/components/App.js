@@ -9,11 +9,6 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
 import AddPlacePopup from "./AddPlacePopup.js";
-import { Route, Routes } from "react-router-dom";
-import ProtectedRouteElement from "./ProtectedRoute.js";
-import Login from "./Login";
-import Register from "./Register";
-import * as auth from "../utils/Auth.js";
 
 function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] =
@@ -23,13 +18,6 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState(null);
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
-  const [loggedIn, setLoggedIn] = React.useState(false);
-
-  function handleRegistration(password, email) {
-    auth.register(password, email).then(() => {
-      alert("qwefqwfqfwqfqwfewfq");
-    });
-  }
 
   React.useEffect(() => {
     api
@@ -137,38 +125,6 @@ function App() {
         handleCardDelete={handleCardDelete}
         cards={cards}
       />
-      <Routes>
-        {/* <ProtectedRouteElement
-          exact
-          path="/"
-          loggedIn={loggedIn}
-          component={Main}
-          onEditAvatar={handleEditAvatarClick}
-          onEditProfile={handleEditProfileClick}
-          onAddPlace={handleAddPlaceClick}
-          onCardClick={onCardClick}
-          handleCardLike={handleCardLike}
-          handleCardDelete={handleCardDelete}
-          cards={cards}
-        /> */}
-        <Route
-          path="/sign-in"
-          element={
-            <Register
-              isOpen={isEditProfilePopupOpen}
-              onRegister={handleRegistration}
-            />
-          }
-        >
-          {/* <Register
-            isOpen={isEditProfilePopupOpen}
-            onRegister={handleRegistration}
-          /> */}
-        </Route>
-        <Route path="/sign-up" element={<Login isOpen={isEditProfilePopupOpen} />}>
-          {/* <Login isOpen={isEditProfilePopupOpen} /> */}
-        </Route>
-      </Routes>
 
       <Footer />
 

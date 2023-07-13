@@ -1,29 +1,27 @@
 import React, { useEffect } from "react";
 import PopupWithForm from "./PopupWithForm";
-import Form from "./Form";
 
-function EditAvatarPopup({ isOpen, onUpdateAvatar, onClose }) {
+function EditAvatarPopup(props) {
   const avatarRef = React.useRef(null);
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    onUpdateAvatar({
+    props.onUpdateAvatar({
       avatar: avatarRef.current.value,
     });
   }
 
   useEffect(() => {
     avatarRef.current.value = "";
-  }, [isOpen]);
+  }, [props.isOpen]);
 
   return (
-    <Form
+    <PopupWithForm
       name="avatar"
       title="Обновить аватар"
-      isOpen={isOpen}
-      // onClose={props.onClose}
+      isOpen={props.isOpen}
+      onClose={props.onClose}
       onSubmit={handleSubmit}
-      isModal={true}
       buttonText="Сохранить"
     >
       <input
@@ -36,12 +34,7 @@ function EditAvatarPopup({ isOpen, onUpdateAvatar, onClose }) {
         ref={avatarRef}
       />
       <span id="placeAvatar-input-error" className="popup__input-error"></span>
-      <button
-        type="button"
-        className="popup__close-button"
-        onClick={onClose}
-      ></button>
-    </Form>
+    </PopupWithForm>
   );
 }
 export default EditAvatarPopup;

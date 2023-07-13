@@ -1,22 +1,22 @@
-function PopupWithForm({ name, title, isOpen, children, onSubmit, buttonText, onClose }) {
+function PopupWithForm(props) {
   return (
-    <div className={`popup ${isOpen ? "popup_opened" : ""}`}>
+    <div className={`popup ${props.isOpen ? "popup_opened" : ""}`}>
       <div className="popup__container popup__overlay">
         <form
           className="popup__form"
-          name={name}
-          onSubmit={onSubmit}
+          name={props.name}
+          onSubmit={props.onSubmit}
         >
-          <h2 className="popup__title">{title}</h2>
-          {children}
+          <h2 className="popup__title">{props.title}</h2>
+          {props.children}
           <button type="submit" className="popup__button">
-            {buttonText}
+            {props.buttonText}
           </button>
         </form>
         <button
           type="button"
           className="popup__close"
-          onClick={onClose}
+          onClick={props.onClose}
         ></button>
       </div>
     </div>
