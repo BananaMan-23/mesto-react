@@ -1,4 +1,4 @@
-export default function InfoTooltip({ isOpen, onClose, title, imgPath }) {
+export default function ConfigTool({ isOpen, onClose, title, imgPath }) {
   return (
     <div className={`popup ${isOpen ? 'popup_opened' : ''}`}>
       <div className="popup__container popup__overlay">

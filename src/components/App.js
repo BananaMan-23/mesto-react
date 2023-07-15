@@ -14,7 +14,7 @@ import ProtectedRoute from './ProtectedRoute';
 import Login from './Login'
 import Register from './Rigister'
 import * as auth from '../utils/auth'
-import InfoTooltip from './InfoTooltip'
+import ConfigTool from './ConfigTool'
 import success from '../images/success.svg'
 import unSuccess from '../images/unsuccess.svg'
 
@@ -203,7 +203,7 @@ function App() {
           </Route>
         </Switch>
         <Footer />
-        <InfoTooltip
+        <ConfigTool
           name='tooltip'
           isOpen={isInfoTooltipOpen}
           onClose={closeAllPopups}
