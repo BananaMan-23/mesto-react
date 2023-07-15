@@ -1,18 +1,9 @@
 .page {
-/*   margin: 0 auto;
-  max-width: 880px; */
   background-color: #000;
-  min-height: 100vh;
+  color: #fff;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  font-family: "inter", Arial, Helvetica, sans-serif;
+  position: relative;
 }
-/* 
-@media screen and (max-width: 915px) {
-  .page {
-    width: 88%;
-  }
-}
-
-@media screen and (max-width: 425px) {
-  .page {
-    width: 88%;
-  }
-} */
