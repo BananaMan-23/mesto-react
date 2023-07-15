@@ -194,20 +194,20 @@ function App() {
       /> */}
 
       <Routes>
-        <Route>
+        <Route path="/" element={
           <ProtectedRouteElement
-            exact
-            path="/"
-            loggedIn={loggedIn}
-            component={Main}
-            onEditAvatar={handleEditAvatarClick}
-            onEditProfile={handleEditProfileClick}
-            onAddPlace={handleAddPlaceClick}
-            onCardClick={onCardClick}
-            handleCardLike={handleCardLike}
-            handleCardDelete={handleCardDelete}
-            cards={cards}
-          />
+          loggedIn={loggedIn}
+          component={Main}
+          onEditAvatar={handleEditAvatarClick}
+          onEditProfile={handleEditProfileClick}
+          onAddPlace={handleAddPlaceClick}
+          onCardClick={onCardClick}
+          handleCardLike={handleCardLike}
+          handleCardDelete={handleCardDelete}
+          cards={cards}
+        />
+        }>
+          
         </Route>
         <Route
           path="/sign-in"
