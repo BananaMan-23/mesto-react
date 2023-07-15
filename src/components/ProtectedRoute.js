@@ -3,10 +3,12 @@ import { Route, Navigate } from "react-router-dom"
 
 export default function ProtectedRouteElement( { component: Component, ...props } ) {
   return (
-    <Route>
-      {
+    <Route path="/" element={
+      props.loggedIn ? <Component {...props} /> : <Navigate to='/sign-in' replace/>
+    }>
+      {/* {
         () => (props.loggedIn ? <Component {...props} /> : <Navigate to='/sign-in' replace/>)
-      }
+      } */}
     </Route>
   )
 }

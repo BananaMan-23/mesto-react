@@ -46,7 +46,7 @@ function App() {
           setEmail(res.data.email);
         }
       });
-      history.push("/");
+      history("/");
     }
   }
 
@@ -148,7 +148,8 @@ function App() {
           imgPath: NotOk,
           text: "Что-то пошло не так! Попробуйте ещё раз.",
         })
-      );
+      )
+      .finally(() => setIsInfoTooltipOpen(true))
     setIsInfoTooltipOpen(true);
   }
 
@@ -159,6 +160,7 @@ function App() {
         auth.getContent(token).then((res) => {
           setEmail(res.data.email);
           setLoggedIn(true);
+          history('/')
         });
       })
       .catch((err) => console.log(err));
@@ -180,7 +182,7 @@ function App() {
   }, []);
 
   return (
-    <CurrentUserContext.Provider value={currentUser || ""}>
+    <CurrentUserContext.Provider value={currentUser}>
       <Header loggedIn={loggedIn} email={email} onSignOut={onSignOut} />
 
       {/* <Main
@@ -194,7 +196,7 @@ function App() {
       /> */}
 
       <Routes>
-        <Route path="/" element={
+        <Route path="/Login" element={
           <ProtectedRouteElement
           loggedIn={loggedIn}
           component={Main}
@@ -215,6 +217,7 @@ function App() {
             <Register
               isOpen={isEditProfilePopupOpen}
               onRegister={handleRegistration}
+              isInfoTooltipOpen={isInfoTooltipOpen}
             />
           }
         ></Route>
@@ -229,7 +232,7 @@ function App() {
       <Footer />
 
       <ConfigTool
-        name="tooltip"
+        name="ConfigTool"
         isOpen={isInfoTooltipOpen}
         onClose={closeAllPopups}
         title={message.text}
