@@ -1,12 +1,13 @@
-import logo from "../images/Vector.svg";
-import { Link, withRouter, useLocation } from "react-router-dom";
-import Info from './Info'
+import Info from "./Info"
+import React from 'react';
+import { Link, withRouter, useLocation } from 'react-router-dom';
 
 function Header({ loggedIn, email, onSignOut }) {
   const location = useLocation()
+  
   return (
     <header className="header">
-      <img className="header__logo" src={logo} alt="логотип" />
+      <div className="header__logo"></div>
       {
         loggedIn ?
         <Info email={email} loggedIn={loggedIn} onSignOut={onSignOut} /> :
@@ -19,7 +20,7 @@ function Header({ loggedIn, email, onSignOut }) {
         </>)
       }
     </header>
-  );
+  )
 }
 
-export default Header;
+export default withRouter(Header)

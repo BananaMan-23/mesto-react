@@ -1,57 +1,56 @@
-import React from "react";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import React from 'react'
+import { CurrentUserContext } from '../contexts/CurrentUserContext'
 
 function Card(props) {
-  const currentUser = React.useContext(CurrentUserContext);
-  const isOwn = props.card.owner._id === currentUser._id;
-  const isLiked = props.card.likes.some((item) => item._id === currentUser._id);
-  const cardDeleteButton = `element__trash ${
-    isOwn ? "" : "element__trash_hidden"
-  }`;
-  const cardLikeButton = `element__group-like ${
-    isLiked ? "element__group-like_active" : ""
-  }`;
+  const currentUser = React.useContext(CurrentUserContext)
+  const isOwn = props.card.owner._id === currentUser._id
+  const isLiked = props.card.likes.some((item) => item._id === currentUser._id)
+  const cardDeleteButtonClassName = (
+    `elements__remove-button ${isOwn ? '' : 'elements__remove-button_state_hidden'}`
+  )
+  const cardLikeButtonClassName  = (
+    `elements__like-button ${isLiked ? 'elements__like-button_active' : ''}`
+  )
 
   function handleCardClick() {
-    props.onCardClick(props.card);
+    props.onCardClick(props.card)
   }
 
   function handleLikeClick() {
-    props.onCardLike(props.card);
+    props.onCardLike(props.card)
   }
 
   function handleDeleteClick() {
-    props.onCardDelete(props.card);
+    props.onCardDelete(props.card)
   }
 
-  return (
-    <div className="element">
-      <button
-        className={cardDeleteButton}
-        type="button"
-        onClick={handleDeleteClick}
-      />
+  return(
+    <li className="elements__card">
       <img
-        className="element__image"
         src={props.card.link}
+        className="elements__image"
         alt={props.card.name}
         onClick={handleCardClick}
       />
-      <div className="element__group">
-        <h2 className="element__group-subtitle">{props.card.name}</h2>
+      <div className="elements__title-wrapper">
+        <h2 className="elements__title">{props.card.name}</h2>
         <div className="elements__like-wrapper">
           <button
-            className={cardLikeButton}
-            type="button"
-            onClick={handleLikeClick}
-          ></button>
-          <span className="elements__like-count">
-            {props.card.likes.length}
-          </span>
+          type="button"
+          className={cardLikeButtonClassName}
+          onClick={handleLikeClick}
+          >
+          </button>
+          <span className="elements__like-count">{props.card.likes.length}</span>
         </div>
       </div>
-    </div>
-  );
+      <button
+      className={cardDeleteButtonClassName}
+      onClick={handleDeleteClick}
+      >
+      </button>
+    </li>
+  )
 }
 
-export default Card;
+export default Card

@@ -1,41 +1,41 @@
-import React, { useEffect } from "react";
-// import PopupWithForm from "./PopupWithForm";
-import Form from './Form'
+import React, { useEffect } from 'react'
+import PopupWithForm from './PopupWithForm'
+// import Form from './Form'
 
 function AddPlacePopup({ isOpen, onAddPlace, onClose }) {
-  const [name, setName] = React.useState("");
-  const [link, setLink] = React.useState("");
+  const [name, setName] = React.useState('')
+  const [link, setLink] = React.useState('')
 
-  function handleNameChange(evt) {
-    setName(evt.target.value);
+  function handleNameChange(e) {
+    setName(e.target.value)
+  }
+  
+  function handleLinkChange(e) {
+    setLink(e.target.value)
   }
 
-  function handleLinkChange(evt) {
-    setLink(evt.target.value);
-  }
-
-  function handleSubmit(evt) {
-    evt.preventDefault();
+  function handleSubmit(e) {
+    e.preventDefault()
     onAddPlace({
       name: name,
       link: link,
-    });
+    })
   }
 
   useEffect(() => {
-    setName("");
-    setLink("");
-  }, [isOpen]);
+    setName('')
+    setLink('')
+  }, [isOpen])
 
   return (
-    <Form
-      name="card-add"
-      title="Новое место"
+    <PopupWithForm
+      name='card-add'
+      title='Новое место'
+      buttonText='Создать'
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
       isModal={true}
-      buttonText="Создать"
     >
       <input
         name="name"
@@ -45,11 +45,12 @@ function AddPlacePopup({ isOpen, onAddPlace, onClose }) {
         placeholder="Название"
         minLength="2"
         maxLength="30"
+        pattern="^[a-zA-Zа-яА-я-\s]+$"
         required
         onChange={handleNameChange}
         value={name}
       />
-      <span id="placeName-input-error" className="popup__input-error"></span>
+      <span className="popup__input-error placeName-input-error"></span>
       <input
         name="link"
         type="url"
@@ -60,14 +61,15 @@ function AddPlacePopup({ isOpen, onAddPlace, onClose }) {
         onChange={handleLinkChange}
         value={link}
       />
-      <span id="placeUrl-input-error" className="popup__input-error"></span>
-      <button
+      <span className="popup__input-error placeUrl-input-error"></span>
+      {/* <button
         type="button"
-        className="popup__close"
+        className="popup__close-button"
         onClick={onClose}
       >
-      </button>     
-    </Form>
-  );
+      </button>         */}
+    </PopupWithForm>
+  )
 }
-export default AddPlacePopup;
+
+export default AddPlacePopup
