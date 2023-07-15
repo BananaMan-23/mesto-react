@@ -169,7 +169,6 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className="page">
         <Header
           loggedIn={loggedIn}
           email={email}
@@ -234,7 +233,6 @@ function App() {
           card={selectedCard}
           onClose={closeAllPopups}
         />
-      </div>
     </CurrentUserContext.Provider>
   );
 }
