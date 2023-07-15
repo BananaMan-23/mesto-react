@@ -1,23 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import { Route, Switch, useHistory } from 'react-router-dom'
-import Header from './Header'
-import Main from './Main'
-import Footer from './Footer'
-import PopupWithForm from './PopupWithForm'
-import ImagePopup from './ImagePopup'
-import { api } from '../utils/api'
-import { CurrentUserContext } from '../contexts/CurrentUserContext'
-import EditProfilePopup from './EditProfilePopup'
-import EditAvatarPopup from './EditAvatarPopup'
-import AddPlacePopup from './AddPlacePopup'
-import ProtectedRoute from './ProtectedRoute';
-import Login from './Login'
-import Register from './Rigister'
-import * as auth from '../utils/auth'
-import InfoTooltip from './InfoTooltip'
-import success from '../images/success.svg'
-import unSuccess from '../images/unsuccess.svg'
-
+import React, { useState, useEffect } from "react";
+import { Route, Switch, useHistory } from "react-router-dom";
+import Header from "./Header";
+import Main from "./Main";
+import Footer from "./Footer";
+import PopupWithForm from "./PopupWithForm";
+import ImagePopup from "./ImagePopup";
+import { api } from "../utils/api";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
+import AddPlacePopup from "./AddPlacePopup";
+import ProtectedRoute from "./ProtectedRoute";
+import Login from "./Login";
+import Register from "./Rigister";
+import * as auth from "../utils/auth";
+import InfoTooltip from "./InfoTooltip";
+import Ok from "../images/Ok.svg";
+import NotOk from "../images/NotOk.svg";
 
 function App() {
   const history = useHistory();
@@ -217,7 +216,7 @@ function App() {
         </Switch>
         <Footer />
         <InfoTooltip
-          name='tooltip'
+          name="tooltip"
           isOpen={isInfoTooltipOpen}
           onClose={closeAllPopups}
           title={message.text}
